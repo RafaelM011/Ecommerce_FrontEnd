@@ -1,9 +1,10 @@
+import { SectionContainer } from './components/section_container/section_container.component'
+
 function App (): JSX.Element {
   return (
     <>
-    <h1 className="text-2xl font-bold text-red-400"> Vite + React + Typescript + Tailwind </h1>
+      <SectionContainer />
     </>
   )
 }
-
 export default App
