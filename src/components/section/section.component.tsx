@@ -1,4 +1,5 @@
 // import Hats from '../../assets/hats.png'
+import type CSS from 'csstype'
 
 interface Props {
   sectionName: string
@@ -6,17 +7,22 @@ interface Props {
 }
 
 export const Section: React.FC<Props> = ({ sectionName, sectionImage }): JSX.Element => {
-  const style = {
+  const style: CSS.Properties = {
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
     backgroundImage: `url(${sectionImage})`,
     backgroundSize: 'cover',
-    backgroundPosition: 'center'
+    backgroundPosition: 'center',
+    transition: '1s'
   }
 
   return (
-    <div className="w-3/12 min-w-[500px] h-[450px] flex justify-center items-center grow" style={style}>
-      <div className="w-[200px] h-[200px] border-white border-2 flex flex-col justify-center items-center">
-        <h2 className="text-2xl font-bold text-white"> {sectionName} </h2>
-        <p className="font-semibold text-white"> SHOP NOW </p>
+    <div className="group relative w-3/12 min-w-[500px] h-[450px] flex justify-center items-center grow overflow-hidden cursor-pointer">
+      <div style={style} className='hover:scale-105'></div>
+      <div className="group-hover:opacity-[0.99] opacity-80 w-[200px] h-[200px] bg-white border-black border-4 flex flex-col justify-evenly items-center">
+        <h2 className="text-2xl font-bold text-slate-500"> {sectionName} </h2>
+        <p className="font-semibold text-slate-500"> SHOP NOW </p>
       </div>
     </div>
   )
