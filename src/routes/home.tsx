@@ -3,9 +3,9 @@ import { Outlet } from 'react-router-dom'
 
 export const Home: React.FC = (): JSX.Element => {
   return (
-    <>
+    <div className='px-16'>
         <NavBar/>
         <Outlet/>
-    </>
+    </div>
   )
 }
