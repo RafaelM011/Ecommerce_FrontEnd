@@ -24,10 +24,10 @@ export const NavBar: React.FC = (): JSX.Element => {
               </svg>
             </Link>
         </div>
-        <div className="flex grow justify-end items-center gap-4">
+        <div className="flex grow justify-end items-center gap-8">
             <h1> <Link to='/shop'> SHOP </Link> </h1>
-            <h1> <Link to='/'> SHOP2 </Link> </h1>
-            <h1> <Link to='/'> SHOP3 </Link> </h1>
+            <h1> <Link to='/contact'> CONTACT </Link> </h1>
+            <h1> <Link to='/signin'> SIGN IN </Link> </h1>
             <h1> <Link to='/'> SHOP4 </Link> </h1>
         </div>
     </div>

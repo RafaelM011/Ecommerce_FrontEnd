@@ -1,4 +1,4 @@
-import { NavBar } from '../components/navbar/nav_bar.component'
+import { NavBar } from '../../components/navbar/nav_bar.component'
 import { Outlet } from 'react-router-dom'
 
 export const Home: React.FC = (): JSX.Element => {
