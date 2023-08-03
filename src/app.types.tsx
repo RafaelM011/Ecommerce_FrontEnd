@@ -3,3 +3,9 @@ export interface Section {
   title: string
   imageUrl: string
 }
+
+export interface UserAuth {
+  displayName: string
+  email: string
+  uid: string
+}
