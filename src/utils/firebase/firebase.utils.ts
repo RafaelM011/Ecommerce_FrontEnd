@@ -5,8 +5,19 @@ import {
   // signInWithRedirect,
   signInWithPopup,
   GoogleAuthProvider,
-  type UserCredential
+  type UserCredential,
+  type User
 } from 'firebase/auth'
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc
+} from 'firebase/firestore'
+
+interface UserAuth {
+  uid: string
+}
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -30,3 +41,11 @@ provider.setCustomParameters({
 
 export const auth = getAuth()
 export const signInWithGooglePopUp = async (): Promise<UserCredential> => await signInWithPopup(auth, provider)
+
+export const db = getFirestore()
+
+export const createUserDocumentFromAuth = async (userAuth: UserAuth): Promise<void> => {
+  const userDocRef = doc(db, 'users', userAuth.uid)
+
+  console.log(userDocRef)
+}
