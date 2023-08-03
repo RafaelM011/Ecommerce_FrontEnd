@@ -1,9 +1,11 @@
+import { type UserAuth } from '../../app.types'
 import { signInWithGooglePopUp, createUserDocumentFromAuth } from '../../utils/firebase/firebase.utils'
 
 export const SingIn: React.FC = (): JSX.Element => {
   const logGoogleUser = async (): Promise<void> => {
     const { user } = await signInWithGooglePopUp()
-    await createUserDocumentFromAuth(user)
+    const userDocRef = await createUserDocumentFromAuth(user as UserAuth)
+    console.log(userDocRef)
   }
 
   return (
