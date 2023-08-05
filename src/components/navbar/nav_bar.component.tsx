@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 export const NavBar: React.FC = (): JSX.Element => {
   return (
-    <div className="flex justify-between items-center w-full h-[150px]">
+    <div className="flex justify-between items-center w-full h-[120px]">
         <div className=''>
             <Link to='/'>
             {/* <?xml version="1.0" encoding="UTF-8"?> */}
@@ -24,11 +24,11 @@ export const NavBar: React.FC = (): JSX.Element => {
               </svg>
             </Link>
         </div>
-        <div className="flex grow justify-end items-center gap-8">
+        <div className="flex grow justify-end items-center gap-4">
+            <h1> <Link to='/'> HOME </Link> </h1>
             <h1> <Link to='/shop'> SHOP </Link> </h1>
-            <h1> <Link to='/contact'> CONTACT </Link> </h1>
             <h1> <Link to='/signin'> SIGN IN </Link> </h1>
-            <h1> <Link to='/'> SHOP4 </Link> </h1>
+            <h1> <Link to='/'> ICON </Link> </h1>
         </div>
     </div>
   )

@@ -1,21 +1,21 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
 import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import App from './App.tsx'
 import ErrorPage from './routes/errorPage/errorPage.route.tsx'
-import { Home } from './routes/homePage/home.route.tsx'
-import { SingIn } from './routes/signInPage/sign-in.route.tsx'
+import Home from './routes/homePage/home.route.tsx'
+import SingIn from './routes/signInPage/sign-in.route.tsx'
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Home/>,
+    element: <App/>,
     errorElement: <ErrorPage/>,
     children: [
       {
         index: true,
-        element: <App/>
+        element: <Home/>
       },
       {
         path: 'shop',
