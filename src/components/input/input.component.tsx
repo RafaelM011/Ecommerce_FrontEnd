@@ -8,6 +8,6 @@ interface Props {
 
 export const InputComponent: React.FC<Props> = ({ className, name, type, placeholder, required }): JSX.Element => {
   return (
-        <input className={className} name={name} type={type} placeholder={placeholder} required={required}/>
+        <input className={`outline-none ${className}`} name={name} type={type} placeholder={placeholder} required={required}/>
   )
 }

@@ -3,7 +3,7 @@ import { NavBar } from './components/navbar/nav_bar.component'
 
 const App: React.FC = (): JSX.Element => {
   return (
-    <div className='px-16'>
+    <div className='px-10'>
         <NavBar/>
         <Outlet/>
     </div>

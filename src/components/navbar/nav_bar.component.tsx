@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 export const NavBar: React.FC = (): JSX.Element => {
   return (
-    <div className="flex justify-between items-center w-full h-[150px]">
+    <div className="flex justify-between items-center w-full h-[120px]">
         <div className=''>
             <Link to='/'>
             {/* <?xml version="1.0" encoding="UTF-8"?> */}
