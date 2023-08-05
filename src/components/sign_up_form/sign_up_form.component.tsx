@@ -1,5 +1,5 @@
 import { type FormData } from '../../app.types'
-import { createUserAuthWithEmailAndPassword } from '../../utils/firebase/firebase.utils'
+// import { createUserAuthWithEmailAndPassword, signInUserWithEmailAndPassword } from '../../utils/firebase/firebase.utils'
 
 export const SignUpForm: React.FC = (): JSX.Element => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
@@ -7,9 +7,14 @@ export const SignUpForm: React.FC = (): JSX.Element => {
     const formData = Object.fromEntries(new FormData(event.target as HTMLFormElement)) as unknown as FormData
     const authData = { email: formData.email, password: formData.password }
 
-    createUserAuthWithEmailAndPassword(authData)
-      .then(userCredential => { console.log(userCredential) })
-      .catch(err => { console.log(err) })
+    console.log(authData)
+    // signInUserWithEmailAndPassword(authData)
+    //   .then(userCredential => { console.log(userCredential) })
+    //   .catch(err => { console.log(err) })
+
+    // createUserAuthWithEmailAndPassword(authData)
+    //   .then(userCredential => { console.log(userCredential) })
+    //   .catch(err => { console.log(err) })
   }
 
   return (
