@@ -1,10 +1,13 @@
-import { SectionContainer } from './components/section_container/section_container.component'
+import { Outlet } from 'react-router-dom'
+import { NavBar } from './components/navbar/nav_bar.component'
 
-function App (): JSX.Element {
+const App: React.FC = (): JSX.Element => {
   return (
-    <>
-      <SectionContainer />
-    </>
+    <div className='px-16'>
+        <NavBar/>
+        <Outlet/>
+    </div>
   )
 }
+
 export default App
