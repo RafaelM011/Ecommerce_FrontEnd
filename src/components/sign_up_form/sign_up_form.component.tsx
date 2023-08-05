@@ -1,5 +1,5 @@
-import { type FormData } from '../../app.types'
-// import { createUserAuthWithEmailAndPassword, signInUserWithEmailAndPassword } from '../../utils/firebase/firebase.utils'
+import { type FormData, type UserAuth } from '../../app.types'
+import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from '../../utils/firebase/firebase.utils'
 
 export const SignUpForm: React.FC = (): JSX.Element => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
@@ -7,14 +7,22 @@ export const SignUpForm: React.FC = (): JSX.Element => {
     const formData = Object.fromEntries(new FormData(event.target as HTMLFormElement)) as unknown as FormData
     const authData = { email: formData.email, password: formData.password }
 
-    console.log(authData)
-    // signInUserWithEmailAndPassword(authData)
-    //   .then(userCredential => { console.log(userCredential) })
-    //   .catch(err => { console.log(err) })
+    if (formData.password !== formData.confirmPassword) {
+      console.log('Password does not match')
+      return
+    }
 
-    // createUserAuthWithEmailAndPassword(authData)
-    //   .then(userCredential => { console.log(userCredential) })
-    //   .catch(err => { console.log(err) })
+    createAuthUserWithEmailAndPassword(authData)
+      .then(userCredential => {
+        const userAuth = {
+          ...userCredential.user,
+          displayName: formData.displayName
+        }
+        createUserDocumentFromAuth(userAuth as UserAuth)
+          .then(userDoc => { console.log(userDoc) })
+          .catch(err => { console.log(err) })
+      })
+      .catch(err => { console.log(err) })
   }
 
   return (

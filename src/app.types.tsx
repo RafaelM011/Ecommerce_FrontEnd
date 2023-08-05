@@ -16,7 +16,7 @@ export interface UserData {
 }
 
 export interface FormData {
-  username: string
+  displayName: string
   email: string
   password: string
   confirmPassword: string
