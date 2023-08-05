@@ -1,15 +1,15 @@
-interface FormData {
-  username: string
-  email: string
-  password: string
-  confirmPassword: string
-}
+import { type FormData } from '../../app.types'
+import { createUserAuthWithEmailAndPassword } from '../../utils/firebase/firebase.utils'
 
 export const SignUpForm: React.FC = (): JSX.Element => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault()
     const formData = Object.fromEntries(new FormData(event.target as HTMLFormElement)) as unknown as FormData
-    console.log(formData)
+    const authData = { email: formData.email, password: formData.password }
+
+    createUserAuthWithEmailAndPassword(authData)
+      .then(userCredential => { console.log(userCredential) })
+      .catch(err => { console.log(err) })
   }
 
   return (
@@ -17,7 +17,7 @@ export const SignUpForm: React.FC = (): JSX.Element => {
         <h1> Sign up with your email and password </h1>
         <form onSubmit={handleSubmit}>
             <label> Display Name </label>
-            <input name='username' type='text' required/>
+            <input name='displayName' type='text' required/>
                 {/*  */}
             <label> Email </label>
             <input name='email' type='email' required/>

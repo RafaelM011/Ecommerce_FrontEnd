@@ -5,6 +5,7 @@ import {
   // signInWithRedirect,
   signInWithPopup,
   GoogleAuthProvider,
+  createUserWithEmailAndPassword,
   type UserCredential
 } from 'firebase/auth'
 import {
@@ -15,7 +16,7 @@ import {
   type DocumentData,
   type DocumentReference
 } from 'firebase/firestore'
-import { type UserAuth } from '../../app.types'
+import { type UserData, type UserAuth } from '../../app.types'
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -31,8 +32,9 @@ const firebaseConfig = {
 }
 
 // Initialize Firebase
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 initializeApp(firebaseConfig)
+
+// AUTHENTICATION SETUP
 const provider = new GoogleAuthProvider()
 provider.setCustomParameters({
   prompt: 'select_account'
@@ -40,7 +42,9 @@ provider.setCustomParameters({
 
 export const auth = getAuth()
 export const signInWithGooglePopUp = async (): Promise<UserCredential> => await signInWithPopup(auth, provider)
+export const createUserAuthWithEmailAndPassword = async ({ email, password }: UserData): Promise<UserCredential> => await createUserWithEmailAndPassword(auth, email, password)
 
+// DATABASE SETUP
 export const db = getFirestore()
 
 export const createUserDocumentFromAuth = async (userAuth: UserAuth): Promise<DocumentReference<DocumentData, DocumentData>> => {
