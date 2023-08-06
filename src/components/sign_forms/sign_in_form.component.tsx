@@ -1,6 +1,6 @@
 import { useContext } from 'react'
-import { type UserAuth, type FormData } from '../../app.types'
-import { createUserDocumentFromAuth, signInUserWithEmailAndPassword, signInWithGooglePopUp } from '../../utils/firebase/firebase.utils'
+import { type FormData } from '../../app.types'
+import { signInUserWithEmailAndPassword, signInWithGooglePopUp } from '../../utils/firebase/firebase.utils'
 import { InputComponent } from '../input/input.component'
 import { UserContext } from '../context/user.context'
 
@@ -27,9 +27,12 @@ export const SignInForm: React.FC = (): JSX.Element => {
   const handleGoogleSubmit = (): void => {
     signInWithGooglePopUp()
       .then(userCredential => {
-        createUserDocumentFromAuth(userCredential.user as UserAuth)
-          .then(userDoc => { console.log(userDoc) })
-          .catch(err => { console.log(err) })
+        const { displayName, email, uid } = userCredential.user
+        setCurrentUser({
+          displayName,
+          email,
+          uid
+        })
       })
       .catch(err => { console.log(err) })
   }
