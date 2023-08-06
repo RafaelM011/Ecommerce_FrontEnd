@@ -5,7 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import App from './App.tsx'
 import ErrorPage from './routes/errorPage/errorPage.route.tsx'
 import Home from './routes/homePage/home.route.tsx'
-import SingIn from './routes/signInPage/sign-in.route.tsx'
+import Auth from './routes/authPage/auth.route.tsx'
 
 const router = createBrowserRouter([
   {
@@ -23,7 +23,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'signIn',
-        element: <SingIn/>
+        element: <Auth/>
       }
     ]
   }
