@@ -1,11 +1,10 @@
-import { NavBar } from '../../components/navbar/nav_bar.component'
-import { Outlet } from 'react-router-dom'
+import { SectionContainer } from '../../components/section_container/section_container.component'
 
-export const Home: React.FC = (): JSX.Element => {
+function Home (): JSX.Element {
   return (
-    <div className='px-16'>
-        <NavBar/>
-        <Outlet/>
-    </div>
+    <>
+      <SectionContainer />
+    </>
   )
 }
+export default Home
