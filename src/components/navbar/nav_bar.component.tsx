@@ -27,7 +27,7 @@ export const NavBar: React.FC = (): JSX.Element => {
         <div className="flex grow justify-end items-center gap-4">
             <h1> <Link to='/'> HOME </Link> </h1>
             <h1> <Link to='/shop'> SHOP </Link> </h1>
-            <h1> <Link to='/signin'> SIGN IN </Link> </h1>
+            <h1> <Link to='/auth'> SIGN IN </Link> </h1>
             <h1> <Link to='/'> ICON </Link> </h1>
         </div>
     </div>

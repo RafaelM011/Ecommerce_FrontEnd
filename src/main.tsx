@@ -22,7 +22,7 @@ const router = createBrowserRouter([
         element: <h1> I am the shop</h1>
       },
       {
-        path: 'signIn',
+        path: 'auth',
         element: <Auth/>
       }
     ]
@@ -31,8 +31,6 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <RouterProvider router={router}/>
+      <RouterProvider router={router}/>
   </React.StrictMode>
 )
-
-// npm WARN deprecated uglify-es@3.3.9: support for ECMAScript is superseded by `uglify-js` as of v3.13.0
