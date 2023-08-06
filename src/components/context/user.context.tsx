@@ -7,13 +7,7 @@ interface Props {
 
 interface Context {
   currentUser: UserAuth | null
-  setCurrentUser: React.Dispatch<React.SetStateAction<UserAuth>>
-}
-
-const userInitialState = {
-  displayName: '',
-  email: '',
-  uid: ''
+  setCurrentUser: React.Dispatch<React.SetStateAction<UserAuth | null>>
 }
 
 const contextInitialState = {
@@ -24,7 +18,7 @@ const contextInitialState = {
 export const UserContext = createContext<Context>(contextInitialState)
 
 export const UserProvider: React.FC<Props> = ({ children }): JSX.Element => {
-  const [currentUser, setCurrentUser] = useState<UserAuth>(userInitialState)
+  const [currentUser, setCurrentUser] = useState<UserAuth | null>(null)
   const value: Context = {
     currentUser,
     setCurrentUser
