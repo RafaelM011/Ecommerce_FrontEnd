@@ -7,6 +7,7 @@ import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
   type UserCredential
 } from 'firebase/auth'
 import {
@@ -42,9 +43,10 @@ provider.setCustomParameters({
 })
 
 export const auth = getAuth()
+export const signInUserWithEmailAndPassword = async ({ email, password }: UserData): Promise<UserCredential> => await signInWithEmailAndPassword(auth, email, password)
 export const signInWithGooglePopUp = async (): Promise<UserCredential> => await signInWithPopup(auth, provider)
 export const createAuthUserWithEmailAndPassword = async ({ email, password }: UserData): Promise<UserCredential> => await createUserWithEmailAndPassword(auth, email, password)
-export const signInUserWithEmailAndPassword = async ({ email, password }: UserData): Promise<UserCredential> => await signInWithEmailAndPassword(auth, email, password)
+export const signOutUser = async (): Promise<void> => { await signOut(auth) }
 
 // DATABASE SETUP
 export const db = getFirestore(app)

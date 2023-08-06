@@ -1,8 +1,12 @@
-import { type UserAuth, type FormData } from '../../app.types'
-import { createUserDocumentFromAuth, signInUserWithEmailAndPassword, signInWithGooglePopUp } from '../../utils/firebase/firebase.utils'
+import { useContext } from 'react'
+import { type FormData } from '../../app.types'
+import { signInUserWithEmailAndPassword, signInWithGooglePopUp } from '../../utils/firebase/firebase.utils'
 import { InputComponent } from '../input/input.component'
+import { UserContext } from '../context/user.context'
 
 export const SignInForm: React.FC = (): JSX.Element => {
+  const { setCurrentUser } = useContext(UserContext)
+
   const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault()
     const formData = Object.fromEntries(new FormData(event.target as HTMLFormElement)) as unknown as FormData
@@ -10,7 +14,12 @@ export const SignInForm: React.FC = (): JSX.Element => {
 
     signInUserWithEmailAndPassword(authData)
       .then(userCredential => {
-        console.log(userCredential)
+        const { displayName, email, uid } = userCredential.user
+        setCurrentUser({
+          displayName,
+          email,
+          uid
+        })
       })
       .catch(err => { console.log(err) })
   }
@@ -18,9 +27,12 @@ export const SignInForm: React.FC = (): JSX.Element => {
   const handleGoogleSubmit = (): void => {
     signInWithGooglePopUp()
       .then(userCredential => {
-        createUserDocumentFromAuth(userCredential.user as UserAuth)
-          .then(userDoc => { console.log(userDoc) })
-          .catch(err => { console.log(err) })
+        const { displayName, email, uid } = userCredential.user
+        setCurrentUser({
+          displayName,
+          email,
+          uid
+        })
       })
       .catch(err => { console.log(err) })
   }
