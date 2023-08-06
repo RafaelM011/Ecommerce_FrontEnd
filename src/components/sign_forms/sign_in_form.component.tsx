@@ -50,6 +50,7 @@ export const SignInForm: React.FC = (): JSX.Element => {
             > SIGN IN
             </button>
             <button
+              type='button'
               onClick={handleGoogleSubmit}
               className='w-6/12 h-fit py-4 mt-10 bg-[#4285F4] text-white text-xs font-thin border-[1px] border-[#4285F4] hover:bg-[#4285E0] transition-all duration-500'
             > GOOGLE SIGN IN
