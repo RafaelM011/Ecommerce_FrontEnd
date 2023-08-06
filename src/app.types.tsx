@@ -9,3 +9,15 @@ export interface UserAuth {
   email: string
   uid: string
 }
+
+export interface UserData {
+  email: string
+  password: string
+}
+
+export interface FormData {
+  displayName: string
+  email: string
+  password: string
+  confirmPassword: string
+}
