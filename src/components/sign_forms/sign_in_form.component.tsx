@@ -1,39 +1,21 @@
-import { useContext } from 'react'
 import { type FormData } from '../../app.types'
 import { signInUserWithEmailAndPassword, signInWithGooglePopUp } from '../../utils/firebase/firebase.utils'
 import { InputComponent } from '../input/input.component'
-import { UserContext } from '../context/user.context'
 
 export const SignInForm: React.FC = (): JSX.Element => {
-  const { setCurrentUser } = useContext(UserContext)
-
   const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault()
     const formData = Object.fromEntries(new FormData(event.target as HTMLFormElement)) as unknown as FormData
     const authData = { email: formData.email, password: formData.password }
 
     signInUserWithEmailAndPassword(authData)
-      .then(userCredential => {
-        const { displayName, email, uid } = userCredential.user
-        setCurrentUser({
-          displayName,
-          email,
-          uid
-        })
-      })
+      .then()
       .catch(err => { console.log(err) })
   }
 
   const handleGoogleSubmit = (): void => {
     signInWithGooglePopUp()
-      .then(userCredential => {
-        const { displayName, email, uid } = userCredential.user
-        setCurrentUser({
-          displayName,
-          email,
-          uid
-        })
-      })
+      .then()
       .catch(err => { console.log(err) })
   }
 

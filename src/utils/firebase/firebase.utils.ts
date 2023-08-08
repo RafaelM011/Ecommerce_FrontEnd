@@ -8,7 +8,14 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-  type UserCredential
+  onAuthStateChanged,
+  type UserCredential,
+  type Unsubscribe,
+  type NextOrObserver,
+  type User
+  // type Unsubscribe,
+  // type NextOrObserver,
+  // type User
 } from 'firebase/auth'
 import {
   getFirestore,
@@ -18,7 +25,7 @@ import {
   type DocumentData,
   type DocumentReference
 } from 'firebase/firestore'
-import { type UserData, type UserAuth } from '../../app.types'
+import { type UserData } from '../../app.types'
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -45,13 +52,15 @@ provider.setCustomParameters({
 export const auth = getAuth()
 export const signInUserWithEmailAndPassword = async ({ email, password }: UserData): Promise<UserCredential> => await signInWithEmailAndPassword(auth, email, password)
 export const signInWithGooglePopUp = async (): Promise<UserCredential> => await signInWithPopup(auth, provider)
+// CAN CREATE AUTH USERS WITH SAME EMAIL REGARDLESS OF REGISTERED ON DB
 export const createAuthUserWithEmailAndPassword = async ({ email, password }: UserData): Promise<UserCredential> => await createUserWithEmailAndPassword(auth, email, password)
 export const signOutUser = async (): Promise<void> => { await signOut(auth) }
+export const handleAuthStateChange = (callback: NextOrObserver<User>): Unsubscribe => onAuthStateChanged(auth, callback)
 
 // DATABASE SETUP
 export const db = getFirestore(app)
 
-export const createUserDocumentFromAuth = async (userAuth: UserAuth): Promise<DocumentReference<DocumentData, DocumentData>> => {
+export const createUserDocumentFromAuth = async (userAuth: User): Promise<DocumentReference<DocumentData, DocumentData>> => {
   const userDocRef = doc(db, 'users', userAuth.uid)
   const userSnapshot = await getDoc(userDocRef)
 
