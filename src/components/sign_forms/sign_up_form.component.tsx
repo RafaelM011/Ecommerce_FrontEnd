@@ -1,3 +1,4 @@
+import { updateProfile } from 'firebase/auth'
 import { type FormData } from '../../app.types'
 import { createAuthUserWithEmailAndPassword } from '../../utils/firebase/firebase.utils'
 import { InputComponent } from '../input/input.component'
@@ -14,7 +15,13 @@ export const SignUpForm: React.FC = (): JSX.Element => {
     }
 
     createAuthUserWithEmailAndPassword(authData)
-      .then()
+      .then(authUser => {
+        updateProfile(authUser.user, {
+          displayName: formData.displayName
+        })
+          // .then()
+          .catch(err => { console.log(err) })
+      })
       .catch(err => { console.log(err) })
   }
 

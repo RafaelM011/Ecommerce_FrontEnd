@@ -15,13 +15,12 @@ export const UserProvider: React.FC<Props> = ({ children }): JSX.Element => {
     const unsubscribe = handleAuthStateChange((user) => {
       if (user != null) {
         createUserDocumentFromAuth(user)
-          .then(userDoc => { console.log(userDoc) })
+          // .then()
           .catch(err => { console.log(err) })
         setCurrentUser(user)
       } else {
         setCurrentUser(null)
       }
-      console.log(user)
     })
 
     return unsubscribe
