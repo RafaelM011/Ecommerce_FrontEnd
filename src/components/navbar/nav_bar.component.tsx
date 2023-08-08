@@ -4,13 +4,11 @@ import { UserContext } from '../context/user.context'
 import { signOutUser } from '../../utils/firebase/firebase.utils'
 
 export const NavBar: React.FC = (): JSX.Element => {
-  const { currentUser, setCurrentUser } = useContext(UserContext)
+  const currentUser = useContext(UserContext)
 
   const handleSignOut = (): void => {
     signOutUser()
-      .then(() => {
-        setCurrentUser(null)
-      })
+      .then()
       .catch(err => { console.log(err) })
   }
 
