@@ -1,10 +1,13 @@
+import { useContext } from 'react'
 import { ProductCard } from '../../components/productCard/product_card.component'
-import productsData from '../../mocks/shop-data.json'
+import { ProductsContext } from '../../context/products.context'
 
 const Shop: React.FC = (): JSX.Element => {
+  const products = useContext(ProductsContext)
+
   return (
         <div className='flex flex-wrap gap-4'>
-            {productsData.map(product => {
+            {products.map(product => {
               return <ProductCard key={product.id} product={product}/>
             })}
         </div>

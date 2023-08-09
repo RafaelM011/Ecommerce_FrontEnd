@@ -10,6 +10,7 @@ import Auth from './routes/authPage/auth.route.tsx'
 import Shop from './routes/shopPage/shop.route.tsx'
 
 import { UserProvider } from './context/user.context.tsx'
+import { ProductsProvider } from './context/products.context.tsx'
 
 const router = createBrowserRouter([
   {
@@ -36,7 +37,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <UserProvider>
-      <RouterProvider router={router}/>
+      <ProductsProvider>
+        <RouterProvider router={router}/>
+      </ProductsProvider>
     </UserProvider>
   </React.StrictMode>
 )
