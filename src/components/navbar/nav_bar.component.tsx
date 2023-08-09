@@ -12,13 +12,16 @@ export const NavBar: React.FC = (): JSX.Element => {
   const [cartModal, setCartModal] = useState(false)
   const currentUser = useContext(UserContext)
 
+  window.addEventListener('click', () => { cartModal && setCartModal(false) })
+
   const handleSignOut = (): void => {
     signOutUser()
       .then()
       .catch(err => { console.log(err) })
   }
 
-  const handleCartClick = (): void => {
+  const handleCartClick = (event: React.MouseEvent<SVGSVGElement>): void => {
+    event.stopPropagation()
     setCartModal(prevState => !prevState)
   }
   return (
