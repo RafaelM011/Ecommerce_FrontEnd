@@ -1,11 +1,9 @@
-import { useContext } from 'react'
-import { type FormData, type UserAuth } from '../../app.types'
-import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from '../../utils/firebase/firebase.utils'
-import { UserContext } from '../context/user.context'
+import { updateProfile } from 'firebase/auth'
+import { type FormData } from '../../app.types'
+import { createAuthUserWithEmailAndPassword } from '../../utils/firebase/firebase.utils'
 import { InputComponent } from '../input/input.component'
 
 export const SignUpForm: React.FC = (): JSX.Element => {
-  const { setCurrentUser } = useContext(UserContext)
   const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault()
     const formData = Object.fromEntries(new FormData(event.target as HTMLFormElement)) as unknown as FormData
@@ -17,21 +15,11 @@ export const SignUpForm: React.FC = (): JSX.Element => {
     }
 
     createAuthUserWithEmailAndPassword(authData)
-      .then(userCredential => {
-        const { email, uid } = userCredential.user
-        const userAuth = {
-          ...userCredential.user,
+      .then(authUser => {
+        updateProfile(authUser.user, {
           displayName: formData.displayName
-        }
-
-        setCurrentUser({
-          displayName: formData.displayName,
-          email,
-          uid
         })
-
-        createUserDocumentFromAuth(userAuth as UserAuth)
-          .then(userDoc => { console.log(userDoc) })
+          // .then()
           .catch(err => { console.log(err) })
       })
       .catch(err => { console.log(err) })
