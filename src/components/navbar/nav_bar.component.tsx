@@ -12,7 +12,7 @@ export const NavBar: React.FC = (): JSX.Element => {
   const [cartModal, setCartModal] = useState(false)
   const currentUser = useContext(UserContext)
 
-  window.addEventListener('click', () => { cartModal && setCartModal(false) })
+  window.addEventListener('click', () => { cartModal && setCartModal(false); console.log('clicked') })
 
   const handleSignOut = (): void => {
     signOutUser()
