@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from 'react'
-import { type UserAuth } from '../app.types'
-import { createUserDocumentFromAuth, handleAuthStateChange } from '../utils/firebase/firebase.utils'
+import { type UserAuth } from '../../app.types'
+import { createUserDocumentFromAuth, handleAuthStateChange } from '../../utils/firebase/firebase.utils'
 
 interface Props {
   children: JSX.Element

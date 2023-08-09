@@ -9,8 +9,8 @@ import Home from './routes/homePage/home.route.tsx'
 import Auth from './routes/authPage/auth.route.tsx'
 import Shop from './routes/shopPage/shop.route.tsx'
 
-import { UserProvider } from './context/user.context.tsx'
-import { ProductsProvider } from './context/products.context.tsx'
+import { UserProvider } from './context/users/user.context.tsx'
+import { ProductsProvider } from './context/products/products.context.tsx'
 
 const router = createBrowserRouter([
   {

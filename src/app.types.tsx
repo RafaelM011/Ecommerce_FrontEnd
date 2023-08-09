@@ -26,3 +26,8 @@ export interface Product {
   imageUrl: string
   price: number
 }
+
+export interface CartElement {
+  quantity: number
+  product: Product
+}
