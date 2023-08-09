@@ -9,7 +9,7 @@ import Home from './routes/homePage/home.route.tsx'
 import Auth from './routes/authPage/auth.route.tsx'
 import Shop from './routes/shopPage/shop.route.tsx'
 
-import { UserProvider } from './components/context/user.context.tsx'
+import { UserProvider } from './context/user.context.tsx'
 
 const router = createBrowserRouter([
   {

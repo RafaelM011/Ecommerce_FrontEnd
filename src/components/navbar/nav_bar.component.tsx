@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { Link } from 'react-router-dom'
-import { UserContext } from '../context/user.context'
+import { UserContext } from '../../context/user.context'
 import { signOutUser } from '../../utils/firebase/firebase.utils'
 
 import { ReactComponent as CrownIcon } from '../../assets/crown.svg'
@@ -12,7 +12,7 @@ export const NavBar: React.FC = (): JSX.Element => {
   const [cartModal, setCartModal] = useState(false)
   const currentUser = useContext(UserContext)
 
-  window.addEventListener('click', () => { cartModal && setCartModal(false); console.log('clicked') })
+  window.addEventListener('click', () => { cartModal && setCartModal(false) })
 
   const handleSignOut = (): void => {
     signOutUser()
