@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { Link } from 'react-router-dom'
-import { UserContext } from '../../context/user.context'
+import { UserContext } from '../../context/users/user.context'
 import { signOutUser } from '../../utils/firebase/firebase.utils'
 
 import { ReactComponent as CrownIcon } from '../../assets/crown.svg'

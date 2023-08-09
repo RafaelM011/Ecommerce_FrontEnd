@@ -1,6 +1,6 @@
 import { createContext, useState } from 'react'
-import { type Product } from '../app.types'
-import productsData from '../mocks/shop-data.json'
+import { type Product } from '../../app.types'
+import productsData from '../../mocks/shop-data.json'
 
 interface Props {
   children: JSX.Element

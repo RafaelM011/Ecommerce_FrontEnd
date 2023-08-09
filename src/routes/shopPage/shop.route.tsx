@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { ProductCard } from '../../components/productCard/product_card.component'
-import { ProductsContext } from '../../context/products.context'
+import { ProductsContext } from '../../context/products/products.context'
 
 const Shop: React.FC = (): JSX.Element => {
   const products = useContext(ProductsContext)
