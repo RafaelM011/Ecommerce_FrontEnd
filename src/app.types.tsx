@@ -19,3 +19,15 @@ export interface FormData {
   password: string
   confirmPassword: string
 }
+
+export interface Product {
+  id: number
+  name: string
+  imageUrl: string
+  price: number
+}
+
+export interface CartElement {
+  quantity: number
+  product: Product
+}

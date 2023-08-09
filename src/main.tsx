@@ -1,12 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import './index.css'
+
 import App from './App.tsx'
 import ErrorPage from './routes/errorPage/errorPage.route.tsx'
 import Home from './routes/homePage/home.route.tsx'
 import Auth from './routes/authPage/auth.route.tsx'
-import { UserProvider } from './components/context/user.context.tsx'
+import Shop from './routes/shopPage/shop.route.tsx'
+
+import { UserProvider } from './context/users/user.context.tsx'
+import { ProductsProvider } from './context/products/products.context.tsx'
+import { CartProvider } from './context/cart/cart.context.tsx'
 
 const router = createBrowserRouter([
   {
@@ -20,7 +25,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'shop',
-        element: <h1> I am the shop</h1>
+        element: <Shop/>
       },
       {
         path: 'auth',
@@ -33,7 +38,11 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <UserProvider>
-      <RouterProvider router={router}/>
+      <CartProvider>
+        <ProductsProvider>
+          <RouterProvider router={router}/>
+        </ProductsProvider>
+      </CartProvider>
     </UserProvider>
   </React.StrictMode>
 )
