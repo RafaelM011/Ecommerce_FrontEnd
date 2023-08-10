@@ -14,11 +14,11 @@ export const CartIcon: React.FC<Props> = ({ quantity, product }): JSX.Element =>
   }
 
   return (
-    <div className='w-full h-[80px] flex'>
-      <div className='basis-3/12' style={style}></div>
+    <div className='w-full h-[80px] flex mt-2 border-b-2 border-r-2 border-black rounded-xl'>
+      <div className='basis-4/12 rounded-xl' style={style}></div>
       <div className='grow flex flex-col justify-center'>
-        <h1 className='text-center font-bold'>{name}</h1>
-        <h1 className='text-center font-bold'>{quantity} x ${price}</h1>
+        <h1 className='text-left px-4 font-bold'>{name}</h1>
+        <h1 className='text-left px-4 font-bold'>{quantity} x ${price}</h1>
       </div>
     </div>
   )
