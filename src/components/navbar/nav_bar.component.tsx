@@ -22,7 +22,7 @@ export const NavBar: React.FC = (): JSX.Element => {
       .catch(err => { console.log(err) })
   }
 
-  const handleCartClick = (event: React.MouseEvent<SVGSVGElement>): void => {
+  const handleCartClick = (event: React.MouseEvent<HTMLDivElement>): void => {
     event.stopPropagation()
     setCartModal(prevState => !prevState)
   }
@@ -38,8 +38,8 @@ export const NavBar: React.FC = (): JSX.Element => {
               ? <h1> <Link to='/auth'> SIGN IN </Link> </h1>
               : <h1 onClick={handleSignOut}> <Link to='/auth'> SIGN OUT </Link> </h1>
             }
-            <div className='relative w-fit h-fit'>
-              <CartIcon className='w-[35px] cursor-pointer' onClick={handleCartClick}/>
+            <div className='relative w-fit h-fit cursor-pointer' onClick={handleCartClick}>
+              <CartIcon className='w-[35px]'/>
               <p className='absolute flex justify-center items-end top-0 bottom-1 left-0 right-0 text-xs font-bold'> {cartElements.size} </p>
             </div>
             {cartModal && createPortal(<Cart/>, document.body)}

@@ -1,6 +1,7 @@
 import { useContext } from 'react'
 import { CartContext } from '../../context/cart/cart.context'
 import { CartIcon } from '../cartIcon/cart_icon.component'
+import { Link } from 'react-router-dom'
 
 export const Cart: React.FC = (): JSX.Element => {
   const { cartElements } = useContext(CartContext)
@@ -13,12 +14,15 @@ export const Cart: React.FC = (): JSX.Element => {
       <div className="w-11/12 h-[250px] mx-auto my-4 overflow-auto scrollbar-hide">
         { Array.from(cartElements.values()).map(element => <CartIcon key={element.product.id} quantity={element.quantity} product={element.product}/>)}
       </div>
+      <Link to='checkout'>
       <button
+        onClick={ () => { document.body.click() }}
         className='w-6/12 h-fit py-4 relative bottom-0 left-[50%] -translate-x-1/2 bg-black text-white text-xs font-thin border-[1px]
         border-black hover:bg-white hover:text-black transition-all duration-500'
       >
       CHECKOUT
       </button>
+      </Link>
     </div>
   )
 }

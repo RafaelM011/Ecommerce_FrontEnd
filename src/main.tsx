@@ -12,6 +12,7 @@ import Shop from './routes/shopPage/shop.route.tsx'
 import { UserProvider } from './context/users/user.context.tsx'
 import { ProductsProvider } from './context/products/products.context.tsx'
 import { CartProvider } from './context/cart/cart.context.tsx'
+import Checkout from './routes/checkOut/checkout.route.tsx'
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: 'auth',
         element: <Auth/>
+      },
+      {
+        path: 'checkout',
+        element: <Checkout/>
       }
     ]
   }
