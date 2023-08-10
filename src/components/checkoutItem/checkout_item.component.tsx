@@ -40,16 +40,16 @@ export const CheckoutItem: React.FC<Props> = ({ quantity, product }): JSX.Elemen
   }
 
   return (
-    <div className="w-10/12 h-fit mx-auto py-4 border-b-2 borded-black grid grid-flow-row grid-cols-5">
-      <div className='w-[200px] h-[200px]' style={style}></div>
-      <h1 className='m-auto text-xl'> {name} </h1>
-      <div className='m-auto flex text-xl'>
+    <div className="w-12/12 max-w-[800px] h-[200px] mx-auto py-4 border-b-2 borded-black flex gap-4 justify-between">
+      <div className='h-[150px] w-[80px] sm:w-[150px] m-auto' style={style}></div>
+      <h1 className='m-auto text-center text-xs sm:text-base md:text-lg grow'> {name} </h1>
+      <div className='m-auto flex justify-center text-xs sm:text-base md:text-lg grow'>
         <span className='cursor-pointer' onClick={() => { handleQuantity(-1) }}> ❮ </span>
           <h1 className='mx-2'> {quantity} </h1>
         <span className='cursor-pointer' onClick={() => { handleQuantity(1) }}> ❯ </span>
       </div>
-      <h1 className='m-auto text-xl'> ${price} </h1>
-      <h1 className='m-auto text-xl cursor-pointer' onClick={handleRemove}> ❌ </h1>
+      <h1 className='m-auto text-xs sm:text-base md:text-lg grow text-center'> ${price} </h1>
+      <h1 className='m-auto text-xs sm:text-base md:text-lg cursor-pointer grow text-end' onClick={handleRemove}> ❌ </h1>
     </div>
   )
 }
