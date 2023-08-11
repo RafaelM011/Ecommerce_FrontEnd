@@ -81,3 +81,7 @@ export const createUserDocumentFromAuth = async (userAuth: User): Promise<Docume
 
   return userDocRef
 }
+
+export const addDataToDatabase = ({title, items}): void => {
+  const categoryRef = doc(db,'categories',title)
+}
