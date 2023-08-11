@@ -25,7 +25,7 @@ import {
   type DocumentData,
   type DocumentReference
 } from 'firebase/firestore'
-import { type UserData } from '../../app.types'
+import { type CategoryData, type UserData } from '../../app.types'
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -82,6 +82,7 @@ export const createUserDocumentFromAuth = async (userAuth: User): Promise<Docume
   return userDocRef
 }
 
-export const addDataToDatabase = ({title, items}): void => {
-  const categoryRef = doc(db,'categories',title)
+export const addDataToDatabase = async ({ title, items }: CategoryData): Promise<void> => {
+  const categoryRef = doc(db, 'categories', title)
+  await setDoc(categoryRef, { title, items })
 }
