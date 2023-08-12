@@ -19,8 +19,10 @@ import {
 } from 'firebase/auth'
 import {
   getFirestore,
+  collection,
   doc,
   getDoc,
+  getDocs,
   setDoc,
   type DocumentData,
   type DocumentReference
@@ -87,14 +89,11 @@ export const addDataToDatabase = async ({ title, items }: CategoryData): Promise
   await setDoc(categoryRef, { title, items })
 }
 
-export const getDataFromDatabase = async (document: string): Promise<void> => {
-  const docRef = doc(db, 'categories', document)
-  const docSnap = await getDoc(docRef)
+export const getDataFromDatabase = async (): Promise<void> => {
+  const collectionRef = collection(db, 'categories')
+  const querySnapshot = await getDocs(collectionRef)
 
-  if (docSnap.exists()) {
-    console.log('Document data:', docSnap.data())
-  } else {
-    // docSnap.data() will be undefined in this case
-    console.log('No such document!')
-  }
+  querySnapshot.forEach(doc => {
+    console.log(doc.data())
+  })
 }

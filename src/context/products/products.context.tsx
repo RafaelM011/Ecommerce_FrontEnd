@@ -14,7 +14,7 @@ export const ProductsProvider: React.FC<Props> = ({ children }): JSX.Element => 
   const [products] = useState<Product[]>(productsData)
 
   useEffect(() => {
-    getDataFromDatabase('Hats')
+    getDataFromDatabase()
       .then()
       .catch(err => { console.log(err) })
   }, [])
