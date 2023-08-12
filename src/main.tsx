@@ -10,7 +10,7 @@ import Auth from './routes/authPage/auth.route.tsx'
 import Shop from './routes/shopPage/shop.route.tsx'
 
 import { UserProvider } from './context/users/user.context.tsx'
-import { ProductsProvider } from './context/categories/categories.context.tsx'
+import { CategoriesProvider } from './context/categories/categories.context.tsx'
 import { CartProvider } from './context/cart/cart.context.tsx'
 import Checkout from './routes/checkOut/checkout.route.tsx'
 import CategoryRoute from './routes/categoryRoute/category.route.tsx'
@@ -49,9 +49,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <UserProvider>
       <CartProvider>
-        <ProductsProvider>
+        <CategoriesProvider>
           <RouterProvider router={router}/>
-        </ProductsProvider>
+        </CategoriesProvider>
       </CartProvider>
     </UserProvider>
   </React.StrictMode>
