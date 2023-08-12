@@ -86,3 +86,15 @@ export const addDataToDatabase = async ({ title, items }: CategoryData): Promise
   const categoryRef = doc(db, 'categories', title)
   await setDoc(categoryRef, { title, items })
 }
+
+export const getDataFromDatabase = async (document: string): Promise<void> => {
+  const docRef = doc(db, 'categories', document)
+  const docSnap = await getDoc(docRef)
+
+  if (docSnap.exists()) {
+    console.log('Document data:', docSnap.data())
+  } else {
+    // docSnap.data() will be undefined in this case
+    console.log('No such document!')
+  }
+}
