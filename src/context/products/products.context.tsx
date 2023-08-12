@@ -1,21 +1,20 @@
 import { createContext, useState, useEffect } from 'react'
-import { type Product } from '../../app.types'
+import { type CategoryData } from '../../app.types'
 
-import productsData from '../../mocks/shop-data.json'
 import { getDataFromDatabase } from '../../utils/firebase/firebase.utils'
 
 interface Props {
   children: JSX.Element
 }
 
-export const ProductsContext = createContext<Product[]>([])
+export const ProductsContext = createContext<CategoryData[]>([])
 
 export const ProductsProvider: React.FC<Props> = ({ children }): JSX.Element => {
-  const [products] = useState<Product[]>(productsData)
+  const [products, setProducts] = useState<CategoryData[]>([])
 
   useEffect(() => {
     getDataFromDatabase()
-      .then()
+      .then(data => { setProducts(data) })
       .catch(err => { console.log(err) })
   }, [])
 

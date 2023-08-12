@@ -89,11 +89,14 @@ export const addDataToDatabase = async ({ title, items }: CategoryData): Promise
   await setDoc(categoryRef, { title, items })
 }
 
-export const getDataFromDatabase = async (): Promise<void> => {
+export const getDataFromDatabase = async (): Promise<CategoryData[]> => {
   const collectionRef = collection(db, 'categories')
   const querySnapshot = await getDocs(collectionRef)
+  const documentsData: CategoryData[] = []
 
   querySnapshot.forEach(doc => {
-    console.log(doc.data())
+    documentsData.push(doc.data() as CategoryData)
   })
+
+  return documentsData
 }

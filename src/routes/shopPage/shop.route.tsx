@@ -6,9 +6,16 @@ const Shop: React.FC = (): JSX.Element => {
   const products = useContext(ProductsContext)
 
   return (
-        <div className='flex flex-wrap gap-4'>
+        <div className='flex flex-col flex-wrap gap-4'>
             {products.map(product => {
-              return <ProductCard key={product.id} product={product}/>
+              return (
+                <div key={product.title}>
+                  <h1 className='text-4xl font-bold text-center my-8 cursor-pointer'> {product.title}</h1>
+                  <div className='flex gap-4'>
+                    {product.items.slice(0, 4).map(item => <ProductCard key={item.id} product={item}/>)}
+                  </div>
+                </div>
+              )
             })}
         </div>
   )
