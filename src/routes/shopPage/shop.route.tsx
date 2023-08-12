@@ -1,18 +1,19 @@
 import { useContext } from 'react'
+import { Link } from 'react-router-dom'
 import { ProductCard } from '../../components/productCard/product_card.component'
-import { ProductsContext } from '../../context/products/products.context'
+import { CategoriesContext } from '../../context/categories/categories.context'
 
 const Shop: React.FC = (): JSX.Element => {
-  const products = useContext(ProductsContext)
+  const categories = useContext(CategoriesContext)
 
   return (
         <div className='flex flex-col flex-wrap gap-4'>
-            {products.map(product => {
+            {categories.map(category => {
               return (
-                <div key={product.title}>
-                  <h1 className='text-4xl font-bold text-center my-8 cursor-pointer'> {product.title}</h1>
-                  <div className='flex gap-4'>
-                    {product.items.slice(0, 4).map(item => <ProductCard key={item.id} product={item}/>)}
+                <div key={category.title}>
+                  <Link to={`${category.title}`} state={category}> <h1 className='text-4xl font-bold text-center my-8 cursor-pointer'> {category.title}</h1> </Link>
+                  <div className='flex flex-wrap justify-center gap-4'>
+                    {category.items.slice(0, 4).map(product => <ProductCard key={product.id} product={product}/>)}
                   </div>
                 </div>
               )

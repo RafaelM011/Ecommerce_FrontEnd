@@ -7,20 +7,20 @@ interface Props {
   children: JSX.Element
 }
 
-export const ProductsContext = createContext<CategoryData[]>([])
+export const CategoriesContext = createContext<CategoryData[]>([])
 
 export const ProductsProvider: React.FC<Props> = ({ children }): JSX.Element => {
-  const [products, setProducts] = useState<CategoryData[]>([])
+  const [category, setCategory] = useState<CategoryData[]>([])
 
   useEffect(() => {
     getDataFromDatabase()
-      .then(data => { setProducts(data) })
+      .then(data => { setCategory(data) })
       .catch(err => { console.log(err) })
   }, [])
 
   return (
-    <ProductsContext.Provider value={products}>
+    <CategoriesContext.Provider value={category}>
       { children }
-    </ProductsContext.Provider>
+    </CategoriesContext.Provider>
   )
 }
