@@ -31,3 +31,15 @@ export interface CartElement {
   quantity: number
   product: Product
 }
+
+export interface ItemData {
+  id: number
+  name: string
+  imageUrl: string
+  price: number
+}
+
+export interface CategoryData {
+  title: string
+  items: ItemData[]
+}

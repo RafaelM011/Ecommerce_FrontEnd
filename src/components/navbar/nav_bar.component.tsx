@@ -26,6 +26,7 @@ export const NavBar: React.FC = (): JSX.Element => {
     event.stopPropagation()
     setCartModal(prevState => !prevState)
   }
+
   return (
     <div className="flex justify-between items-center w-full h-[120px]">
         <div className=''>

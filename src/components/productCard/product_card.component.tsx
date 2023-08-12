@@ -9,6 +9,7 @@ interface Props {
 export const ProductCard: React.FC<Props> = ({ product }) => {
   const { setCartElements } = useContext(CartContext)
   const { name, imageUrl, price } = product
+
   const style = {
     backgroundImage: `url(${imageUrl})`,
     backgroundSize: 'cover',
@@ -35,7 +36,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
   }
 
   return (
-    <div className='relative flex flex-col w-[350px] h-[350px] grow group'>
+    <div className='relative flex flex-col basis-full min-[650px]:basis-[45%] lg:basis-[20%] h-[330px] group'>
       <div className='w-full grow' style={style}></div>
       <div className='flex justify-between w-full'>
         <h1>{name}</h1>
