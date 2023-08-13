@@ -7,7 +7,7 @@ const Checkout: React.FC = (): JSX.Element => {
   let total = 0
 
   cartElements.forEach(cartElement => {
-    total += cartElement.quantity * cartElement.product.price
+    total += cartElement.quantity * cartElement.price
   })
 
   return (
@@ -19,7 +19,7 @@ const Checkout: React.FC = (): JSX.Element => {
         <h1 className="text-center text-xs sm:text-base md:text-lg font-medium grow"> PRICE </h1>
         <h1 className="text-center text-xs sm:text-base md:text-lg font-medium grow"> REMOVE </h1>
       </div>
-      {Array.from(cartElements.values()).map(cartElement => <CheckoutItem key={cartElement.product.id} quantity={cartElement.quantity} product={cartElement.product}/>)}
+      {Array.from(cartElements.values()).map(cartElement => <CheckoutItem key={cartElement.id} quantity={cartElement.quantity} product={cartElement}/>)}
       <h1 className='text-xs sm:text-base md:text-lg font-bold w-12/12 max-w-[800px] mx-auto text-end'> TOTAL ${total}</h1>
     </section>
   )

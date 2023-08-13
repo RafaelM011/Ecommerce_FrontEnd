@@ -9,17 +9,19 @@ interface Props {
 
 export const CategoriesContext = createContext<CategoryData[]>([])
 
-export const ProductsProvider: React.FC<Props> = ({ children }): JSX.Element => {
-  const [category, setCategory] = useState<CategoryData[]>([])
+export const CategoriesProvider: React.FC<Props> = ({ children }): JSX.Element => {
+  const [categories, setCategories] = useState<CategoryData[]>([])
 
   useEffect(() => {
-    getDataFromDatabase()
-      .then(data => { setCategory(data) })
-      .catch(err => { console.log(err) })
+    const text = async (): Promise<void> => {
+      const data = await getDataFromDatabase()
+      setCategories(data)
+    }
+    text()
   }, [])
 
   return (
-    <CategoriesContext.Provider value={category}>
+    <CategoriesContext.Provider value={categories}>
       { children }
     </CategoriesContext.Provider>
   )

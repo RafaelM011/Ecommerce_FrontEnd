@@ -12,7 +12,7 @@ export const Cart: React.FC = (): JSX.Element => {
       onClick={event => { event.stopPropagation() }}
     >
       <div className="w-11/12 h-[250px] mx-auto my-4 overflow-auto scrollbar-hide">
-        { Array.from(cartElements.values()).map(element => <CartIcon key={element.product.id} quantity={element.quantity} product={element.product}/>)}
+        { Array.from(cartElements.values()).map(element => <CartIcon key={element.id} quantity={element.quantity} product={element}/>)}
       </div>
       <Link to='checkout'>
       <button
