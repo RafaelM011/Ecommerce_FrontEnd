@@ -27,9 +27,8 @@ export interface Product {
   price: number
 }
 
-export interface CartElement {
+export interface CartElement extends Product {
   quantity: number
-  product: Product
 }
 
 export interface ItemData {

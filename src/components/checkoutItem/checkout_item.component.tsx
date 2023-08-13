@@ -22,8 +22,8 @@ export const CheckoutItem: React.FC<Props> = ({ quantity, product }): JSX.Elemen
       setCartElements(prevMap => {
         const newMap = new Map(prevMap)
         newMap.set(id, {
-          quantity: quantity + value,
-          product
+          ...product,
+          quantity: quantity + value
         })
 
         return newMap

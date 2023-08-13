@@ -8,7 +8,7 @@ interface Props {
 
 export const ProductCard: React.FC<Props> = ({ product }) => {
   const { setCartElements } = useContext(CartContext)
-  const { name, imageUrl, price } = product
+  const { id, name, imageUrl, price } = product
 
   const style = {
     backgroundImage: `url(${imageUrl})`,
@@ -19,16 +19,16 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
   const handleAddToCart = (): void => {
     setCartElements(prevMap => {
       const newMap = new Map(prevMap)
-      if (newMap.has(product.id)) {
-        const quantity = newMap.get(product.id)?.quantity ?? 1
-        newMap.set(product.id, {
-          quantity: quantity + 1,
-          product
+      if (newMap.has(id)) {
+        const quantity = newMap.get(id)?.quantity ?? 1
+        newMap.set(id, {
+          ...product,
+          quantity: quantity + 1
         })
       } else {
-        newMap.set(product.id, {
-          quantity: 1,
-          product
+        newMap.set(id, {
+          ...product,
+          quantity: 1
         })
       }
       return newMap
