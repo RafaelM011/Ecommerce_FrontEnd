@@ -7,32 +7,13 @@ interface Props {
 }
 
 export const ProductCard: React.FC<Props> = ({ product }) => {
-  const { setCartElements } = useContext(CartContext)
-  const { id, name, imageUrl, price } = product
+  const { handleAddToCart } = useContext(CartContext)
+  const { name, imageUrl, price } = product
 
   const style = {
     backgroundImage: `url(${imageUrl})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center'
-  }
-
-  const handleAddToCart = (): void => {
-    setCartElements(prevMap => {
-      const newMap = new Map(prevMap)
-      if (newMap.has(id)) {
-        const quantity = newMap.get(id)?.quantity ?? 1
-        newMap.set(id, {
-          ...product,
-          quantity: quantity + 1
-        })
-      } else {
-        newMap.set(id, {
-          ...product,
-          quantity: 1
-        })
-      }
-      return newMap
-    })
   }
 
   return (
@@ -43,7 +24,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
         <h1>{price}</h1>
       </div>
       <button
-        onClick={handleAddToCart}
+        onClick={() => { handleAddToCart(product) }}
         className='absolute bottom-[60px] left-[50%] -translate-x-1/2 w-10/12 h-fit py-4 bg-white text-black text-sm
         font-bold opacity-70 transition-all duration-200 hover:opacity-90 hover:scale-110 hidden group-hover:block'
       > ADD TO CART
