@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import { useContext } from 'react'
 import { createPortal } from 'react-dom'
 import { Link } from 'react-router-dom'
 import { UserContext } from '../../context/users/user.context'
@@ -10,11 +10,11 @@ import { Cart } from '../cartComponent/cart.component'
 import { CartContext } from '../../context/cart/cart.context'
 
 export const NavBar: React.FC = (): JSX.Element => {
-  const [cartModal, setCartModal] = useState(false)
   const currentUser = useContext(UserContext)
-  const { cartElements } = useContext(CartContext)
+  const { isCartOpen, toggleCartOpen, cartElements } = useContext(CartContext)
 
-  window.addEventListener('click', () => { cartModal && setCartModal(false) })
+  // toggleCartOpen has an optional parameter "toFalse" which closes the modal if it is the to true
+  window.addEventListener('click', () => { isCartOpen && toggleCartOpen(true) })
 
   const handleSignOut = (): void => {
     signOutUser()
@@ -24,7 +24,7 @@ export const NavBar: React.FC = (): JSX.Element => {
 
   const handleCartClick = (event: React.MouseEvent<HTMLDivElement>): void => {
     event.stopPropagation()
-    setCartModal(prevState => !prevState)
+    toggleCartOpen()
   }
 
   return (
@@ -43,7 +43,7 @@ export const NavBar: React.FC = (): JSX.Element => {
               <CartIcon className='w-[35px]'/>
               <p className='absolute flex justify-center items-end top-0 bottom-1 left-0 right-0 text-xs font-bold'> {cartElements.size} </p>
             </div>
-            {cartModal && createPortal(<Cart/>, document.body)}
+            {isCartOpen && createPortal(<Cart/>, document.body)}
         </div>
     </div>
   )

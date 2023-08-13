@@ -7,6 +7,8 @@ interface Props {
 
 interface ICartContext {
   cartElements: Map<number, CartElement>
+  isCartOpen: boolean
+  toggleCartOpen: (toFalse?: boolean) => void
   handleAddToCart: (product: CartElement) => void
   handleQuantity: (product: CartElement, value: number) => void
   handleRemove: (product: CartElement) => void
@@ -14,6 +16,8 @@ interface ICartContext {
 
 export const CartContext = createContext<ICartContext>({
   cartElements: new Map<number, CartElement>(),
+  isCartOpen: false,
+  toggleCartOpen: () => null,
   handleAddToCart: () => null,
   handleQuantity: () => null,
   handleRemove: () => null
@@ -21,6 +25,12 @@ export const CartContext = createContext<ICartContext>({
 
 export const CartProvider: React.FC<Props> = ({ children }): JSX.Element => {
   const [cartElements, setCartElements] = useState(new Map<number, CartElement>())
+  const [isCartOpen, setIsCartOpen] = useState(false)
+
+  const toggleCartOpen = (toFalse = false): void => {
+    if (toFalse) { setIsCartOpen(false); return }
+    setIsCartOpen(prevState => !prevState)
+  }
 
   const handleAddToCart = (product: CartElement): void => {
     const { id } = product
@@ -70,6 +80,8 @@ export const CartProvider: React.FC<Props> = ({ children }): JSX.Element => {
 
   const value = {
     cartElements,
+    isCartOpen,
+    toggleCartOpen,
     handleAddToCart,
     handleQuantity,
     handleRemove
