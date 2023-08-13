@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { type Product } from '../../app.types'
+import { type CartElement, type Product } from '../../app.types'
 import { CartContext } from '../../context/cart/cart.context'
 
 interface Props {
@@ -24,7 +24,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
         <h1>{price}</h1>
       </div>
       <button
-        onClick={() => { handleAddToCart(product) }}
+        onClick={() => { handleAddToCart(product as CartElement) }}
         className='absolute bottom-[60px] left-[50%] -translate-x-1/2 w-10/12 h-fit py-4 bg-white text-black text-sm
         font-bold opacity-70 transition-all duration-200 hover:opacity-90 hover:scale-110 hidden group-hover:block'
       > ADD TO CART
