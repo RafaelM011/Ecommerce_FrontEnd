@@ -10,7 +10,7 @@ import { Cart } from '../cartComponent/cart.component'
 import { CartContext } from '../../context/cart/cart.context'
 
 export const NavBar: React.FC = (): JSX.Element => {
-  const currentUser = useContext(UserContext)
+  const { currentUser } = useContext(UserContext)
   const { isCartOpen, toggleCartOpen, cartElements } = useContext(CartContext)
 
   // toggleCartOpen has an optional parameter "toFalse" which closes the modal if it is the to true
