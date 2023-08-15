@@ -13,6 +13,7 @@ export const NavBar: React.FC = (): JSX.Element => {
   const { currentUser } = useContext(UserContext)
   const { isCartOpen, toggleCartOpen, cartElements } = useContext(CartContext)
 
+  const quantity = Array.from(cartElements.values()).reduce((acc, val) => acc + val.quantity, 0)
   // toggleCartOpen has an optional parameter "toFalse" which closes the modal if it is the to true
   window.addEventListener('click', () => { isCartOpen && toggleCartOpen(true) })
 
@@ -41,7 +42,7 @@ export const NavBar: React.FC = (): JSX.Element => {
             }
             <div className='relative w-fit h-fit cursor-pointer' onClick={handleCartClick}>
               <CartIcon className='w-[35px]'/>
-              <p className='absolute flex justify-center items-end top-0 bottom-1 left-0 right-0 text-xs font-bold'> {cartElements.size} </p>
+              <p className='absolute flex justify-center items-end top-0 bottom-1 left-0 right-0 text-xs font-bold'> {quantity} </p>
             </div>
             {isCartOpen && createPortal(<Cart/>, document.body)}
         </div>

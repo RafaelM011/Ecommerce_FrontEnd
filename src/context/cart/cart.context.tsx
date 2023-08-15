@@ -54,7 +54,7 @@ const cartReducer: Reducer<CartState, CartActions> = (prevState, action) => {
         ...prevState,
         isCartOpen: !prevState.isCartOpen
       }
-    case 'ADD_ITEM_TO_CART': {
+    case 'ADD_ITEM_TO_CART':
       if (typeof payload === 'object') {
         const { product } = payload
         if (newMap.has(product.id)) {
@@ -74,7 +74,6 @@ const cartReducer: Reducer<CartState, CartActions> = (prevState, action) => {
         ...prevState,
         cartElements: newMap
       }
-    }
     case 'UPDATE_QUANTITY':
       if (typeof payload === 'object' && payload.value !== undefined) {
         const { product, value } = payload
