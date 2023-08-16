@@ -26,11 +26,10 @@ const App: React.FC = (): JSX.Element => {
   }, [])
 
   useEffect(() => {
-    const text = async (): Promise<void> => {
+    (async (): Promise<void> => {
       const data = await getDataFromDatabase()
       dispatch({ type: CATEGORIES_ACTION_TYPES.SET_CURRENT_CATEGORIES, payload: data })
-    }
-    text()
+    })()
   }, [])
 
   return (

@@ -1,10 +1,10 @@
-import { useContext } from 'react'
-import { CartContext } from '../../context/cart/cart.context'
+import { useSelector } from 'react-redux'
 import { CartIcon } from '../cartIcon/cart_icon.component'
 import { Link } from 'react-router-dom'
+import { selectCartItems } from '../../store/cartSlice/cart.selectors'
 
 export const Cart: React.FC = (): JSX.Element => {
-  const { cartElements } = useContext(CartContext)
+  const cartElements = useSelector(selectCartItems)
 
   return (
     <div

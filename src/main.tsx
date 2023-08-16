@@ -9,13 +9,11 @@ import Home from './routes/homePage/home.route.tsx'
 import Auth from './routes/authPage/auth.route.tsx'
 import Shop from './routes/shopPage/shop.route.tsx'
 
-import { CategoriesProvider } from './context/categories/categories.context.tsx'
-import { CartProvider } from './context/cart/cart.context.tsx'
 import Checkout from './routes/checkOut/checkout.route.tsx'
 import CategoryRoute from './routes/categoryRoute/category.route.tsx'
 
 import { Provider } from 'react-redux'
-import { store } from './store/store.tsx'
+import { store } from './store/store.js'
 
 const router = createBrowserRouter([
   {
@@ -50,11 +48,7 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <Provider store={store}>
-        <CartProvider>
-          <CategoriesProvider>
-              <RouterProvider router={router}/>
-          </CategoriesProvider>
-        </CartProvider>
+      <RouterProvider router={router}/>
     </Provider>
   </React.StrictMode>
 )

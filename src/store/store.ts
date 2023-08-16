@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import { createStore } from 'redux'
 import { rootReducer } from './root_reducer'
 

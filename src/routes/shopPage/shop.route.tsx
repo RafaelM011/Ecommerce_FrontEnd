@@ -1,14 +1,11 @@
-// import { useContext } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import { ProductCard } from '../../components/productCard/product_card.component'
 
 import { selectCategories } from '../../store/categoriesSlice/categories.selector'
-// import { CategoriesContext } from '../../context/categories/categories.context'
 
 const Shop: React.FC = (): JSX.Element => {
-  // const categories = useContext(CategoriesContext)
   const categories = useSelector(selectCategories)
 
   return (

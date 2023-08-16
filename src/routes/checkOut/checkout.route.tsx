@@ -1,9 +1,9 @@
-import { useContext } from 'react'
+import { useSelector } from 'react-redux'
 import { CheckoutItem } from '../../components/checkoutItem/checkout_item.component'
-import { CartContext } from '../../context/cart/cart.context'
+import { selectCartItems } from '../../store/cartSlice/cart.selectors'
 
 const Checkout: React.FC = (): JSX.Element => {
-  const { cartElements } = useContext(CartContext)
+  const cartElements = useSelector(selectCartItems)
   let total = 0
 
   cartElements.forEach(cartElement => {

@@ -1,13 +1,13 @@
-import { useContext } from 'react'
-import { type CartElement, type Product } from '../../app.types'
-import { CartContext } from '../../context/cart/cart.context'
+import { useDispatch } from 'react-redux'
+import { type Product } from '../../app.types'
+import { CART_ACTION_TYPES } from '../../store/cartSlice/cart.actions'
 
 interface Props {
   product: Product
 }
 
 export const ProductCard: React.FC<Props> = ({ product }) => {
-  const { handleAddToCart } = useContext(CartContext)
+  const dispatch = useDispatch()
   const { name, imageUrl, price } = product
 
   const style = {
@@ -24,7 +24,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
         <h1>{price}</h1>
       </div>
       <button
-        onClick={() => { handleAddToCart(product as CartElement) }}
+        onClick={() => { dispatch({ type: CART_ACTION_TYPES.ADD_ITEM_TO_CART, payload: { product } }) }}
         className='absolute bottom-[60px] left-[50%] -translate-x-1/2 w-10/12 h-fit py-4 bg-white text-black text-sm
         font-bold opacity-70 transition-all duration-200 hover:opacity-90 hover:scale-110 hidden group-hover:block'
       > ADD TO CART

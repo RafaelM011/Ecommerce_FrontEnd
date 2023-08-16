@@ -1,5 +1,4 @@
-import { useContext } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { createPortal } from 'react-dom'
 import { Link } from 'react-router-dom'
 import { signOutUser } from '../../utils/firebase/firebase.utils'
@@ -8,17 +7,19 @@ import { ReactComponent as CrownIcon } from '../../assets/crown.svg'
 import { ReactComponent as CartIcon } from '../../assets/shopping-bag.svg'
 
 import { Cart } from '../cartComponent/cart.component'
-import { CartContext } from '../../context/cart/cart.context'
 
 import { selectCurrentUser } from '../../store/userSlice/user.selector'
+import { CART_ACTION_TYPES } from '../../store/cartSlice/cart.actions'
+import { selectCartItems, selectIsCartOpen } from '../../store/cartSlice/cart.selectors'
 
 export const NavBar: React.FC = (): JSX.Element => {
+  const dispatch = useDispatch()
   const currentUser = useSelector(selectCurrentUser)
-  const { isCartOpen, toggleCartOpen, cartElements } = useContext(CartContext)
+  const isCartOpen = useSelector(selectIsCartOpen)
+  const cartElements = useSelector(selectCartItems)
   const quantity = Array.from(cartElements.values()).reduce((acc, val) => acc + val.quantity, 0)
 
-  // toggleCartOpen has an optional parameter "toFalse" which closes the modal if it is the to true
-  window.addEventListener('click', () => { isCartOpen && toggleCartOpen(true) })
+  window.addEventListener('click', () => dispatch({ type: CART_ACTION_TYPES.TOGGLE_CART_OPEN, payload: false }))
 
   const handleSignOut = (): void => {
     signOutUser()
@@ -28,7 +29,7 @@ export const NavBar: React.FC = (): JSX.Element => {
 
   const handleCartClick = (event: React.MouseEvent<HTMLDivElement>): void => {
     event.stopPropagation()
-    toggleCartOpen()
+    dispatch({ type: CART_ACTION_TYPES.TOGGLE_CART_OPEN, payload: !isCartOpen })
   }
 
   return (
