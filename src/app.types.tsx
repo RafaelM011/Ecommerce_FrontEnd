@@ -13,10 +13,8 @@ export interface UserData {
   password: string
 }
 
-export interface FormData {
+export interface FormData extends UserData {
   displayName: string
-  email: string
-  password: string
   confirmPassword: string
 }
 
@@ -31,20 +29,14 @@ export interface CartElement extends Product {
   quantity: number
 }
 
-export interface ItemData {
-  id: number
-  name: string
-  imageUrl: string
-  price: number
-}
-
 export interface CategoryData {
   title: string
-  items: ItemData[]
+  items: Product[]
 }
 
 export interface StoreState {
   user: {
     currentUser: string | null
   }
+  categories: CategoryData[]
 }

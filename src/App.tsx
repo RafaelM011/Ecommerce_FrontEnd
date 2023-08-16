@@ -3,9 +3,9 @@ import { useDispatch } from 'react-redux'
 import { Outlet } from 'react-router-dom'
 import { NavBar } from './components/navbar/nav_bar.component'
 
-import { createUserDocumentFromAuth, handleAuthStateChange } from './utils/firebase/firebase.utils'
-
-import { USER_ACTION_TYPES } from './store/userSlice/user.reducer'
+import { createUserDocumentFromAuth, getDataFromDatabase, handleAuthStateChange } from './utils/firebase/firebase.utils'
+import { USER_ACTION_TYPES } from './store/userSlice/user.actions'
+import { CATEGORIES_ACTION_TYPES } from './store/categoriesSlice/categories.actions'
 
 const App: React.FC = (): JSX.Element => {
   const dispatch = useDispatch()
@@ -23,6 +23,14 @@ const App: React.FC = (): JSX.Element => {
     })
 
     return unsubscribe
+  }, [])
+
+  useEffect(() => {
+    const text = async (): Promise<void> => {
+      const data = await getDataFromDatabase()
+      dispatch({ type: CATEGORIES_ACTION_TYPES.SET_CURRENT_CATEGORIES, payload: data })
+    }
+    text()
   }, [])
 
   return (

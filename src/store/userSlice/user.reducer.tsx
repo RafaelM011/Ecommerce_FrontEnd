@@ -1,15 +1,9 @@
-export const USER_ACTION_TYPES = {
-  SET_CURRENT_USER: 'SET_CURRENT_USER'
-} as const
+import { USER_ACTION_TYPES, type UserActions } from './user.actions'
 
 const INITIAL_STATE = {
   currentUser: null
 }
 
-interface UserActions {
-  type: keyof typeof USER_ACTION_TYPES
-  payload: string | null
-}
 interface UserState {
   currentUser: string | null
 }
