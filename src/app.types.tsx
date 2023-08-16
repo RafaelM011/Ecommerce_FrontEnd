@@ -42,3 +42,9 @@ export interface CategoryData {
   title: string
   items: ItemData[]
 }
+
+export interface StoreState {
+  user: {
+    currentUser: string | null
+  }
+}

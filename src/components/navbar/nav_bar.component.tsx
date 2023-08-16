@@ -1,19 +1,20 @@
 import { useContext } from 'react'
+import { useSelector } from 'react-redux'
 import { createPortal } from 'react-dom'
 import { Link } from 'react-router-dom'
-import { UserContext } from '../../context/users/user.context'
 import { signOutUser } from '../../utils/firebase/firebase.utils'
 
 import { ReactComponent as CrownIcon } from '../../assets/crown.svg'
 import { ReactComponent as CartIcon } from '../../assets/shopping-bag.svg'
 import { Cart } from '../cartComponent/cart.component'
 import { CartContext } from '../../context/cart/cart.context'
+import { type StoreState } from '../../app.types'
 
 export const NavBar: React.FC = (): JSX.Element => {
-  const { currentUser } = useContext(UserContext)
+  const currentUser = useSelector((state: StoreState): string | null => state.user.currentUser)
   const { isCartOpen, toggleCartOpen, cartElements } = useContext(CartContext)
-
   const quantity = Array.from(cartElements.values()).reduce((acc, val) => acc + val.quantity, 0)
+
   // toggleCartOpen has an optional parameter "toFalse" which closes the modal if it is the to true
   window.addEventListener('click', () => { isCartOpen && toggleCartOpen(true) })
 
