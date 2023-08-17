@@ -1,8 +1,9 @@
 import { type Product, type CartElement, type ReduxAction } from '../../app.types'
+import { createAction } from '../../utils/redux/redux.utils'
 import { CART_ACTION_TYPES } from './cart.types'
 
 export const toggleIsCartOpen = (toggleState: boolean): ReduxAction => {
-  return { type: CART_ACTION_TYPES.TOGGLE_CART_OPEN, payload: toggleState }
+  return createAction(CART_ACTION_TYPES.TOGGLE_CART_OPEN, toggleState)
 }
 
 export const addItemToCart = (map: Map<number, CartElement>, product: Product): ReduxAction => {
@@ -19,8 +20,7 @@ export const addItemToCart = (map: Map<number, CartElement>, product: Product): 
       quantity: 1
     })
   }
-
-  return { type: CART_ACTION_TYPES.ADD_ITEM_TO_CART, payload: newMap }
+  return createAction(CART_ACTION_TYPES.ADD_ITEM_TO_CART, newMap)
 }
 
 export const updateCartItemQuantity = (map: Map<number, CartElement>, product: Product, value: number): ReduxAction => {
@@ -30,11 +30,11 @@ export const updateCartItemQuantity = (map: Map<number, CartElement>, product: P
     ...product,
     quantity: quantity + value
   })
-  return { type: CART_ACTION_TYPES.UPDATE_QUANTITY, payload: newMap }
+  return createAction(CART_ACTION_TYPES.UPDATE_QUANTITY, newMap)
 }
 
 export const removeCartItem = (map: Map<number, CartElement>, product: Product): ReduxAction => {
   const newMap = new Map(map)
   newMap.delete(product.id)
-  return { type: CART_ACTION_TYPES.UPDATE_QUANTITY, payload: newMap }
+  return createAction(CART_ACTION_TYPES.REMOVE_ITEM, newMap)
 }
