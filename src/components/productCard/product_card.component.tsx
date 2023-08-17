@@ -1,6 +1,7 @@
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { type Product } from '../../app.types'
-import { CART_ACTION_TYPES } from '../../store/cartSlice/cart.actions'
+import { selectCartItems } from '../../store/cartSlice/cart.selectors'
+import { addItemToCart } from '../../store/cartSlice/cart.actions'
 
 interface Props {
   product: Product
@@ -8,12 +9,17 @@ interface Props {
 
 export const ProductCard: React.FC<Props> = ({ product }) => {
   const dispatch = useDispatch()
+  const cartElements = useSelector(selectCartItems)
   const { name, imageUrl, price } = product
 
   const style = {
     backgroundImage: `url(${imageUrl})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center'
+  }
+
+  const handleAddItemToCart = (): void => {
+    dispatch(addItemToCart(cartElements, product))
   }
 
   return (
@@ -24,7 +30,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
         <h1>{price}</h1>
       </div>
       <button
-        onClick={() => { dispatch({ type: CART_ACTION_TYPES.ADD_ITEM_TO_CART, payload: { product } }) }}
+        onClick={handleAddItemToCart}
         className='absolute bottom-[60px] left-[50%] -translate-x-1/2 w-10/12 h-fit py-4 bg-white text-black text-sm
         font-bold opacity-70 transition-all duration-200 hover:opacity-90 hover:scale-110 hidden group-hover:block'
       > ADD TO CART

@@ -1,5 +1,5 @@
 import { type CategoryData } from '../../app.types'
-import { CATEGORIES_ACTION_TYPES, type CategoriesActions } from './categories.actions'
+import { CATEGORIES_ACTION_TYPES, type CategoriesActions } from './categories.types'
 
 type CategoryState = CategoryData[]
 const CATEGORIES_INITIAL_STATE: CategoryState = []

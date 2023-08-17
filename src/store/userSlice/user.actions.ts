@@ -1,8 +1,7 @@
-export const USER_ACTION_TYPES = {
-  SET_CURRENT_USER: 'SET_CURRENT_USER'
-} as const
+import { type ReduxAction } from '../../app.types'
+import { createAction } from '../../utils/redux/redux.utils'
+import { USER_ACTION_TYPES } from './user.types'
 
-export interface UserActions {
-  type: keyof typeof USER_ACTION_TYPES
-  payload: string | null
+export const setCurrentUser = (user: string | null): ReduxAction => {
+  return createAction({ type: USER_ACTION_TYPES.SET_CURRENT_USER, payload: user })
 }

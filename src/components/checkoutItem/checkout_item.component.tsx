@@ -1,6 +1,7 @@
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { type Product } from '../../app.types'
-import { CART_ACTION_TYPES } from '../../store/cartSlice/cart.actions'
+import { removeCartItem, updateCartItemQuantity } from '../../store/cartSlice/cart.actions'
+import { selectCartItems } from '../../store/cartSlice/cart.selectors'
 
 interface Props {
   quantity: number
@@ -9,6 +10,7 @@ interface Props {
 
 export const CheckoutItem: React.FC<Props> = ({ quantity, product }): JSX.Element => {
   const dispatch = useDispatch()
+  const cartElements = useSelector(selectCartItems)
   const { name, imageUrl, price } = product
   const style = {
     backgroundImage: `url(${imageUrl})`,
@@ -18,11 +20,11 @@ export const CheckoutItem: React.FC<Props> = ({ quantity, product }): JSX.Elemen
 
   const handleAddOrRemove = (value: number): void => {
     if (quantity + value === 0) handleRemoveItem()
-    else dispatch({ type: CART_ACTION_TYPES.UPDATE_QUANTITY, payload: { product, value } })
+    else dispatch(updateCartItemQuantity(cartElements, product, value))
   }
 
   const handleRemoveItem = (): void => {
-    dispatch({ type: CART_ACTION_TYPES.REMOVE_ITEM, payload: { product } })
+    dispatch(removeCartItem(cartElements, product))
   }
 
   return (

@@ -8,9 +8,9 @@ import { ReactComponent as CartIcon } from '../../assets/shopping-bag.svg'
 
 import { Cart } from '../cartComponent/cart.component'
 
-import { selectCurrentUser } from '../../store/userSlice/user.selector'
-import { CART_ACTION_TYPES } from '../../store/cartSlice/cart.actions'
+import { selectCurrentUser } from '../../store/userSlice/user.selectors'
 import { selectCartItems, selectIsCartOpen } from '../../store/cartSlice/cart.selectors'
+import { toggleIsCartOpen } from '../../store/cartSlice/cart.actions'
 
 export const NavBar: React.FC = (): JSX.Element => {
   const dispatch = useDispatch()
@@ -19,7 +19,7 @@ export const NavBar: React.FC = (): JSX.Element => {
   const cartElements = useSelector(selectCartItems)
   const quantity = Array.from(cartElements.values()).reduce((acc, val) => acc + val.quantity, 0)
 
-  window.addEventListener('click', () => dispatch({ type: CART_ACTION_TYPES.TOGGLE_CART_OPEN, payload: false }))
+  window.addEventListener('click', () => dispatch(toggleIsCartOpen(false)))
 
   const handleSignOut = (): void => {
     signOutUser()
@@ -29,7 +29,7 @@ export const NavBar: React.FC = (): JSX.Element => {
 
   const handleCartClick = (event: React.MouseEvent<HTMLDivElement>): void => {
     event.stopPropagation()
-    dispatch({ type: CART_ACTION_TYPES.TOGGLE_CART_OPEN, payload: !isCartOpen })
+    dispatch(toggleIsCartOpen(!isCartOpen))
   }
 
   return (

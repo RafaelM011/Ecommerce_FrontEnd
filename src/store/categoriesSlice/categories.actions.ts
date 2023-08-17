@@ -1,10 +1,6 @@
-import { type CategoryData } from '../../app.types'
+import { type CategoryData, type ReduxAction } from '../../app.types'
+import { CATEGORIES_ACTION_TYPES } from './categories.types'
 
-export interface CategoriesActions {
-  type: keyof typeof CATEGORIES_ACTION_TYPES
-  payload: CategoryData[]
+export const setCategories = (data: CategoryData[]): ReduxAction => {
+  return { type: CATEGORIES_ACTION_TYPES.SET_CURRENT_CATEGORIES, payload: data }
 }
-
-export const CATEGORIES_ACTION_TYPES = {
-  SET_CURRENT_CATEGORIES: 'SET_CURRENT_CATEGORIES'
-} as const

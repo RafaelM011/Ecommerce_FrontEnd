@@ -34,6 +34,11 @@ export interface CategoryData {
   items: Product[]
 }
 
+export interface ReduxAction {
+  type: string
+  payload: unknown
+}
+
 export interface StoreState {
   user: {
     currentUser: string | null
