@@ -43,7 +43,11 @@ export interface StoreState {
   user: {
     currentUser: string | null
   }
-  categories: CategoryData[]
+  categories: {
+    categories: CategoryData[]
+    isLoading: boolean
+    error: string | null
+  }
   cart: {
     cartElements: Map<number, CartElement>
     isCartOpen: boolean

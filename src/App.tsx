@@ -3,9 +3,9 @@ import { useDispatch } from 'react-redux'
 import { Outlet } from 'react-router-dom'
 import { NavBar } from './components/navbar/nav_bar.component'
 
-import { createUserDocumentFromAuth, getDataFromDatabase, handleAuthStateChange } from './utils/firebase/firebase.utils'
+import { createUserDocumentFromAuth, handleAuthStateChange } from './utils/firebase/firebase.utils'
 import { setCurrentUser } from './store/userSlice/user.actions'
-import { setCategories } from './store/categoriesSlice/categories.actions'
+import { fetchCaterogiesAsync } from './store/categoriesSlice/categories.actions'
 
 const App: React.FC = (): JSX.Element => {
   const dispatch = useDispatch()
@@ -26,10 +26,7 @@ const App: React.FC = (): JSX.Element => {
   }, [])
 
   useEffect(() => {
-    (async (): Promise<void> => {
-      const data = await getDataFromDatabase()
-      dispatch(setCategories(data))
-    })()
+    dispatch(fetchCaterogiesAsync())
   }, [])
 
   return (

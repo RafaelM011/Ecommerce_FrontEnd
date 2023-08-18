@@ -8,7 +8,6 @@ import ErrorPage from './routes/errorPage/errorPage.route.tsx'
 import Home from './routes/homePage/home.route.tsx'
 import Auth from './routes/authPage/auth.route.tsx'
 import Shop from './routes/shopPage/shop.route.tsx'
-
 import Checkout from './routes/checkOut/checkout.route.tsx'
 import CategoryRoute from './routes/categoryRoute/category.route.tsx'
 

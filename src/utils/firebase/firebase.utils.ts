@@ -13,9 +13,6 @@ import {
   type Unsubscribe,
   type NextOrObserver,
   type User
-  // type Unsubscribe,
-  // type NextOrObserver,
-  // type User
 } from 'firebase/auth'
 import {
   getFirestore,
@@ -51,10 +48,10 @@ provider.setCustomParameters({
   prompt: 'select_account'
 })
 
+// CAN CREATE AUTH USERS WITH SAME EMAIL REGARDLESS OF REGISTERED ON DB
 export const auth = getAuth()
 export const signInUserWithEmailAndPassword = async ({ email, password }: UserData): Promise<UserCredential> => await signInWithEmailAndPassword(auth, email, password)
 export const signInWithGooglePopUp = async (): Promise<UserCredential> => await signInWithPopup(auth, provider)
-// CAN CREATE AUTH USERS WITH SAME EMAIL REGARDLESS OF REGISTERED ON DB
 export const createAuthUserWithEmailAndPassword = async ({ email, password }: UserData): Promise<UserCredential> => await createUserWithEmailAndPassword(auth, email, password)
 export const signOutUser = async (): Promise<void> => { await signOut(auth) }
 export const handleAuthStateChange = (callback: NextOrObserver<User>): Unsubscribe => onAuthStateChanged(auth, callback)
