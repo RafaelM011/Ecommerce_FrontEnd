@@ -36,11 +36,11 @@ export const Section: React.FC<Props> = ({ sectionName, sectionImage }): JSX.Ele
     <div className="group relative w-3/12 min-w-[400px] h-[450px] flex justify-center items-center grow overflow-hidden border-black border-2">
       <div style={style} className='hover:scale-[110%]'></div>
       <Link to={`shop/${sectionName}`} state={item}>
-      <div className="group-hover:opacity-[0.99] opacity-80 w-[200px] h-[200px] bg-white border-black border-4 flex flex-col justify-evenly items-center">
-        <h2 className="text-2xl font-bold text-slate-500"> {sectionName}</h2>
-        <p className="font-semibold text-slate-500"> SHOP NOW </p>
-      </div>
-    </Link>
+        <div className="group-hover:opacity-[0.99] opacity-80 w-[200px] h-[200px] bg-white border-black border-4 flex flex-col justify-evenly items-center">
+          <h2 className="text-2xl font-bold text-slate-500"> {sectionName}</h2>
+          <p className="font-semibold text-slate-500"> SHOP NOW </p>
+        </div>
+      </Link>
     </div>
   )
 }

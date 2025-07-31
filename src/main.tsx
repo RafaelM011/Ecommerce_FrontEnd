@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './index.css'
 
+// Hello
 import App from './App.tsx'
 import ErrorPage from './routes/errorPage/errorPage.route.tsx'
 import Home from './routes/homePage/home.route.tsx'
